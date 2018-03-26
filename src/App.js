@@ -3,8 +3,10 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProductsFromServer } from './store';
-import Products from './Products';
 import Nav from './Nav';
+import Products from './Products';
+import ProductForm from './ProductForm';
+import ProductInfo from './ProductInfo';
 
 class App extends React.Component {
 
@@ -17,7 +19,14 @@ class App extends React.Component {
       <Router>
         <div>
           <Route path='/' component={ Nav } />
-          <Route exact path='/products' component={ Products } />
+          <Switch>
+            <Route exact path='/products' component={ Products } />
+            <Route exact path='/products/create' component={ ProductForm } />
+            <Route exact path='/products/:id/edit' component={ ProductForm } />
+            <Route exact path='/products/:id' render={({ match }) => (
+              <ProductInfo id={ match.params.id } />
+            )} />
+          </Switch>
         </div>
       </Router>
     )

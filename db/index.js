@@ -8,7 +8,7 @@ const Product = conn.define('product', {
     type: Sequelize.STRING
   },
   price: {
-    type: Sequelize.INTEGER
+    type: Sequelize.FLOAT
   },
   quantity: {
     type: Sequelize.INTEGER

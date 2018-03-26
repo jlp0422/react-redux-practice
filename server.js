@@ -18,6 +18,13 @@ app.get('/api/products', (req, res, next) => {
     .catch(next)
 })
 
+app.delete('/api/products/:id', (req, res, next) => {
+  Product.findById(req.params.id)
+    .then( product => product.destroy())
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`listening on da port of ${port}`))
 
