@@ -22,9 +22,11 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/products' component={ Products } />
             <Route exact path='/products/create' component={ ProductForm } />
-            <Route exact path='/products/:id/edit' component={ ProductForm } />
+            <Route exact path='/products/:id/edit' render={({ match, history }) => (
+              <ProductForm id={ match.params.id * 1} history={ history } />
+            )} />
             <Route exact path='/products/:id' render={({ match }) => (
-              <ProductInfo id={ match.params.id } />
+              <ProductInfo id={ match.params.id * 1 } />
             )} />
           </Switch>
         </div>

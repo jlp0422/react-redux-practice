@@ -1,20 +1,26 @@
+/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteProductFromServer } from './store';
 
 const ProductInfo = ({ product, deleteProduct }) => {
   return (
     <div>
-      <h2>Product Info: { product && product.name} </h2>
-      {
-        product &&
-        <div>
-          <h5>Price: ${ product.price }</h5>
-          <h5>Quantity: { product.quantity }</h5>
-        </div>
-      }
-      <button>Edit Product</button>&nbsp;&nbsp;
-      <button onClick={() => deleteProduct(product.id)}>Delete Product</button>
+    {
+      product &&
+      <div>
+        <h2>Product Info: {product.name} </h2>
+        <h5>Price: ${product.price}</h5>
+        <h5>Quantity: {product.quantity}</h5>
+        <Link to={`/products/${product.id}/edit`}>
+          <button>Edit Product</button>
+        </Link>&nbsp;&nbsp;
+        <button onClick={() => deleteProduct(product.id)}>Delete Product</button>
+    </div>
+
+    }
+
     </div>
   )
 }
